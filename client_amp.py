@@ -4,12 +4,6 @@ from twisted.protocols import amp
 from prototipes import *
 
 
-class Substraction(amp.Command):
-    arguments = [('a', amp.Integer()),
-                 ('b', amp.Integer())]
-    response = [('total', amp.Integer())]
-
-
 class Math(amp.AMP):
 
     def substraction(self, a, b):
