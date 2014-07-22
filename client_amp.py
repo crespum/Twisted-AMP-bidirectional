@@ -23,6 +23,11 @@ def doMath():
     def summed(result):
         return result['total']
     sumDeferred.addCallback(summed)
+    
+    def done(result):
+        print 'Done with math:', result
+        reactor.stop()
+    sumDeferred.addCallback(done)
 
 if __name__ == '__main__':
     destination = TCP4ClientEndpoint(reactor, '127.0.0.1', 1234)
