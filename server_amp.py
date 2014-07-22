@@ -12,9 +12,6 @@ class Math(amp.AMP):
         # Already asynchronous call
         d = self.callRemote(Substraction, a=90, b=81)
 
-        def connected(ampProto):
-            return self.callRemote(Substraction, a=90, b=81)
-
         def summed(result):
             return result['total']
         d.addCallback(summed)
