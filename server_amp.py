@@ -8,14 +8,16 @@ class Math(amp.AMP):
 
     def sum(self, a, b):
         total = a + b
-        print 'Did a sum: %d + %d = %d' % (a, b, total)
-        # Already asynchronous call
-        d = self.callRemote(Substraction, a=90, b=81)
+        print 'I did a sum: %d + %d = %d' % (a, b, total)
 
-        def summed(result):
+        d = self.callRemote(Substraction, a=10, b=1)
+        def subs_res(result):
+            print 'Remote did a substraction: 10 - 1 = ' + str(result['total'])
             return result['total']
-        d.addCallback(summed)
-
+        d.addCallback(subs_res)
+        def subs_error(err):
+            print err
+        d.addErrback(subs_error)
         return {'total': total}
     Sum.responder(sum)
 

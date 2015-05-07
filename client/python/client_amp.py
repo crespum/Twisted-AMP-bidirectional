@@ -8,26 +8,28 @@ class Math(amp.AMP):
 
     def substraction(self, a, b):
         total = a - b
-        print 'Did a substraction: %d - %d = %d' % (a, b, total)
+        print 'I did a substraction: %d - %d = %d' % (a, b, total)
         return {'total': total}
     Substraction.responder(substraction)
 
 
 def doMath():
-    sumDeferred = connectProtocol(destination, Math())
-
+    d = connectProtocol(destination, Math())
     def connected(ampProto):
-        return ampProto.callRemote(Sum, a=13, b=81)
-    sumDeferred.addCallback(connected)
-
-    def summed(result):
+        return ampProto.callRemote(Sum, a=5, b=3)
+    d.addCallback(connected)
+    def sum_res(result):
+        print 'Remote did a sum: 5 + 3 = ' + str(result['total'])
         return result['total']
-    sumDeferred.addCallback(summed)
-    
+    d.addCallback(sum_res)
+    def sum_error(err):
+        print err
+    d.addErrback(sum_error)
+
     def done(result):
         print 'Done with math:', result
         reactor.stop()
-    sumDeferred.addCallback(done)
+    d.addCallback(done)
 
 if __name__ == '__main__':
     destination = TCP4ClientEndpoint(reactor, '127.0.0.1', 1234)
