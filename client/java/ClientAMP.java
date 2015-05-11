@@ -10,16 +10,16 @@ public class ClientAMP extends AMP {
 		_reactor = reactor;
 
 		/** Define a local method that might be called remotely. */
-		localCommand("Substraction", new Prototipes.SubstractionCommand());
+		localCommand("Substraction", new Commands.SubstractionCommand());
 	}
 
 
 	/** Methods that might be called remotely must be public */
-	public Prototipes.SubstractionResp substraction(int a, int b) {
+	public Commands.SubstractionResp substraction(int a, int b) {
 		int res = a - b;
 		System.out.println("I did a substraction: " + a + " - " + b + " = " + res);
 
-		Prototipes.SubstractionResp sr = new Prototipes.SubstractionResp();
+		Commands.SubstractionResp sr = new Commands.SubstractionResp();
 		sr.total = res;
 
 		return sr;
@@ -30,8 +30,8 @@ public class ClientAMP extends AMP {
 	 * callback method is called with a populated response class. Returned
 	 * object is handed to chained callback if it exists.
 	 */
-	class SumRes implements Deferred.Callback<Prototipes.SumResp> {
-		public Object callback(Prototipes.SumResp retval) {
+	class SumRes implements Deferred.Callback<Commands.SumResp> {
+		public Object callback(Commands.SumResp retval) {
 
 			System.out.println("Remote did a sum: 5 + 3 = "
 					+ retval.getResponse());
@@ -64,11 +64,11 @@ public class ClientAMP extends AMP {
 	public void connectionMade() {
 		System.out.println("connected");
 
-		Prototipes.SumParams rp = new Prototipes.SumParams(5, 3);
-		Prototipes.SumResp cr = new Prototipes.SumResp();
+		Commands.SumParams rp = new Commands.SumParams(5, 3);
+		Commands.SumResp cr = new Commands.SumResp();
 
 		System.out.println("Asking remote for a sum");
-		AMP.RemoteCommand<Prototipes.SumResp> remote = new RemoteCommand<Prototipes.SumResp>(
+		AMP.RemoteCommand<Commands.SumResp> remote = new RemoteCommand<Commands.SumResp>(
 				"Sum", rp, cr);
 		Deferred dfd = remote.callRemote();
 		dfd.addCallback(new SumRes());

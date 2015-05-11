@@ -13,7 +13,7 @@ import com.twistedmatrix.amp.LocalCommand;
  * @author xabicrespog@gmail.com
  *
  */
-public class Prototipes {
+public class Commands {
 	// Sum command will be executed on the server side
 	// -----------------------------------------------
 	/**

@@ -21,6 +21,6 @@ Launching the java client
 ---------------------------
 The java library that contains the AMP protocol has already been compiled to ```java-amp.jar```. The source code of this library is in [this GitHub repository](https://github.com/glyph/amp-java).
 
-Compile the client: ```javac -cp '.:java-amp.jar' client/java/ClientAMP.java client/java/Prototipes.java```
+Compile the client: ```javac -cp '.:java-amp.jar' client/java/ClientAMP.java client/java/Commands.java```
 
 Then execute ```java -cp '.:java-amp.jar' client/java/ClientAMP```

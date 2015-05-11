@@ -1,7 +1,7 @@
 from twisted.internet import reactor
 from twisted.internet.endpoints import TCP4ClientEndpoint, connectProtocol
 from twisted.protocols import amp
-from prototipes import *
+from commands import *
 
 
 class Math(amp.AMP):

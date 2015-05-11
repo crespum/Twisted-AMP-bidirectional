@@ -1,7 +1,7 @@
 from twisted.protocols import amp
 from twisted.internet import reactor
 from twisted.internet.protocol import Factory
-from prototipes import *
+from commands import *
 
 
 class Math(amp.AMP):
