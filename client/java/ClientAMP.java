@@ -10,22 +10,9 @@ public class ClientAMP extends AMP {
 		_reactor = reactor;
 
 		/** Define a local method that might be called remotely. */
-		localCommand("Substraction", new SubstractionCommand());
+		localCommand("Substraction", new Prototipes.SubstractionCommand());
 	}
 
-	/**
-	 * This class contains the name and parameters of a local command. It
-	 * defines the name, the parameter names in order, and parameter classes.
-	 * Class variables must be public and match local command arguments.
-	 */
-	public class SubstractionCommand extends LocalCommand {
-		public int a;
-		public int b;
-
-		public SubstractionCommand() {
-			super("substraction", new String[] { "a", "b" });
-		}
-	}
 
 	/** Methods that might be called remotely must be public */
 	public Prototipes.SubstractionResp substraction(int a, int b) {
